@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Curated-Login</title>
+      <link href="../static/semantic/dist/semantic.css" rel="stylesheet" th:href="@{/semantic/dist/semantic.css}"/>
+      <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/newspaper-32-182846.png}"/>
+      <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/newspaper-32-182846.png}"/>
+   </head>
+   <body>
+    <div class="ui inverted vertical masthead center aligned segment">
+	    <div class="ui container">
+			      <!-- Include _menu.html -->
+			 <div  class="ui large secondary inverted pointing menu">
+			   <a th:href="@{/userInfo}" class="item">Re-Curate</a>
+			   <a th:href="@{/curated}" class="item">Curated</a>
+			   <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}" class="item">Log out</a>
+			
+			   <div class="right item" style="padding-bottom: 3px;">
+			     <h1 class="ui inverted header">
+			       TheNewsCurator
+			     </h1>
+			   </div>
+			 </div>
+	    </div>
+	   	<div class="ui hidden divider"></div> 
+		<div class="ui text container">
+	      <h2>The top headlines from your preferred news sources</h2>
+	    </div>
+ 	</div>
+ 	<div class="ui hidden divider"></div> 
+     
+    <!-- Beginning of Form -->
+    <div class="ui main" style="margin: 50px auto">
+        <div class="ui equal width grid">
+            <div class="row">
+                <div class="column"></div>
+                <div class="column">
+                    <h2 class="ui grey header" style="margin-left: 15px">
+                        <div class="content">
+                            Login 
+                        </div>
+                    </h2>
+                    <form class="ui large form" name='f' th:action="@{/j_spring_security_check}" method='POST'>
+                        <div class="ui segment">
+                            <div class="ui basic segment">
+                                <div class="field">
+                                    <div class="ui left icon input">
+                                        <i class="user icon"></i>
+                                        <input type="text" name="username" placeholder="Username" value=''>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui left icon input">
+                                        <i class="lock icon"></i>
+                                        <input type="password" name="password" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>    
+                            
+                            <div class="ui basic segment">
+                                <div class="inline field">
+                                    <div class="ui checkbox" style="padding-top: 12.5px">
+                                        <input type="checkbox" name="remember-me">
+                                        <label> Remember me</label>
+                                    </div>
+                                    <div class="ui submit button basic right floated"><input name="submit" type="submit" value="submit" style="border: none;" /></div>
+                                </div>
+                            </div>    
+                            
+                            <div class="ui basic segment">
+                                
+                                    <a href="#">Lost your password?</a>
+                                    <br>
+                                    <br>
+                                    <a href="#">Register</a>
+                            
+                            </div>    
+                        </div>
+					      <!-- /login?error=true -->
+					      <div th:if="${#request.getParameter('error') == 'true'}" class="ui negative message">
+					         Login Failed<br />
+					         Reason :
+					         <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+					            th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+					                Static summary
+					         </span>
+					      </div>    
+                    </form>
+                </div>
+                <div class="column"></div>
+            </div>
+            <div class="row"></div>
+        </div>
+    </div>
+    
+    <div class="ui inverted vertical footer segment">
+    	<div class="ui center aligned container">
+	      	<div class="ui stackable inverted divided grid">
+	      	</div>
+	      	<div class="ui inverted section divider"></div>
+	      	<div>Powered by the <b>NewsAPI</b> </div>
+			<div class="ui horizontal inverted small divided link list">
+			  <a class="item" href="#">Site Map</a>
+			  <a class="item" href="#">Contact Us</a>
+			  <a class="item" href="#">Terms and Conditions</a>
+			  <a class="item" href="#">Privacy Policy</a>
+			</div>
+    	</div>
+  	</div>
+       
+       
+       
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="../static/semantic/dist/semantic.js" th:href="@{/semantic/dist/semantic.js}"></script>       
+   </body>
+    
+</html>

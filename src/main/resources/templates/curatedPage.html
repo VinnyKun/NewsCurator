@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Curated</title>
+		<link href="../static/semantic/dist/semantic.css" rel="stylesheet" th:href="@{/semantic/dist/semantic.css}"/>
+      	<link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/newspaper-32-182846.png}"/>
+      	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/newspaper-32-182846.png}"/>		
+   </head>
+   <body>
+      
+   <div class="ui inverted vertical masthead center aligned segment">
+	    <div class="ui container">
+			      <!-- Include _menu.html -->
+      		<th:block th:include="/_menu"></th:block>
+	    </div>
+	   	<div class="ui hidden divider"></div> 
+		<div class="ui text container">
+	      <h2>The top headlines from your preferred news sources as of: <b th:text="${time}"></b> <i class="clock outline icon"></i> </h2>
+	    </div>
+ 	</div>
+ 	<div class="ui hidden divider"></div> 
+       
+       
+       
+       <div class="ui middle aligned container verticle stripe segment">
+	       <div class="ui three stackable cards" >
+		       <div class="ui card" th:each="article : ${articles}">
+				  <div class="ui image">
+				    <img th:src="${article.urlToImage()}" th:href="${article.url()}">
+				  </div>
+				  <div class="content">
+				    <a class="header" th:text="${article.title()}" th:href="${article.url()}"></a>
+				    <div class="meta">
+				      <span class="date" th:text="${article.publishedAt()}"></span>
+				    </div>
+				    <div class="description" th:text="${article.description()}">
+				    </div>
+				  </div>
+				  <div class="extra content">
+			      	<span th:text="${article.source().name()}"></span>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="ui hidden divider"></div>  
+		
+	<div class="ui inverted vertical footer segment">
+    	<div class="ui center aligned container">
+	      	<div class="ui stackable inverted divided grid">
+	      	</div>
+	      	<div class="ui inverted section divider"></div>
+	      	<div>Powered by the <b>NewsAPI</b> </div>
+			<div class="ui horizontal inverted small divided link list">
+			  <a class="item" href="#">Site Map</a>
+			  <a class="item" href="#">Contact Us</a>
+			  <a class="item" href="#">Terms and Conditions</a>
+			  <a class="item" href="#">Privacy Policy</a>
+			</div>
+    	</div>
+  	</div>
+		
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="../static/semantic/dist/semantic.js" th:href="@{/semantic/dist/semantic.js}"></script>
+   </body>
+    
+</html>
+</table>

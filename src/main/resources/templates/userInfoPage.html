@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+ 		<meta charset="utf-8">
+ 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 		<meta name="viewport" content="width=device-width, initial-scale=1">
+ 		<title>reCurate</title>
+      	<link href="../static/semantic/dist/semantic.css" rel="stylesheet" th:href="@{/semantic/dist/semantic.css}"/>
+      	<link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/newspaper-32-182846.png}"/>
+      	<link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/newspaper-32-182846.png}"/>
+      	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      	<script type="text/javascript" th:src="@{/semantic/dist/components/checkbox.js}"></script>
+      	<script type="text/javascript">
+      	
+      	        $(function () {
+      	            $('.ui.checkbox')
+      	                    .checkbox()
+      	                    ;
+      	        });
+        </script>
+        
+   </head>
+   <body>
+  	
+  	<div class="ui inverted vertical masthead center aligned segment">
+	    <div class="ui container">
+			      <!-- Include _menu.html -->
+		 <div xmlns:th="http://www.thymeleaf.org" class="ui large secondary inverted pointing menu">
+		   <a th:href="@{/userInfo}" class="active item">Re-Curate</a>
+		   <a th:href="@{/curated}" class=" item">Curated</a>
+		   <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}" class="item">Log out</a>
+		
+		   <div class="right item" style="padding-bottom: 3px;">
+		     <h1 class="ui inverted header">
+		       TheNewsCurator
+		     </h1>
+		   </div>
+		 </div>
+	    </div>
+	   	
+	   
+		<div class="ui text container">
+		  <h2>Welcome <span th:utext="${#request.userPrincipal.name}"></span> </h2>
+	    </div>
+ 	</div>
+ 	<div class="ui hidden divider"></div> 
+       
+       
+<!-- Beginning of Form -->
+    <div class="ui main" style="margin: 50px auto">
+        <div class="ui equal width grid">
+            <div class="row">
+                <div class="column"></div>
+                <div class="column">
+                    <h2 class="ui grey header" style="margin-left: 15px">
+                        <div class="content">
+                            Select Your Preferred News Sources
+                        </div>
+                    </h2>
+                    <form class="ui large form" name='f' th:action="@{/j_spring_security_check}" method='POST'>
+                        <div class="ui segment"  style="padding-bottom: 45px">
+                            <div class="ui basic segment">
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="bbc-news" tabindex="0" class="hidden">
+							        	<label>BBC News</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="bbc-sport" tabindex="0" class="hidden">
+							        	<label>BBC Sport</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="bleacher-report" tabindex="0" class="hidden">
+							        	<label>Bleacher Report</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="bloomberg" tabindex="0" class="hidden">
+							        	<label>Bloomberg</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="cnn" tabindex="0" class="hidden">
+							        	<label>CNN</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="espn" tabindex="0" class="hidden">
+							        	<label>ESPN</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="financial-times" tabindex="0" class="hidden">
+							        	<label>Financial Times</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="four-four-two" tabindex="0" class="hidden">
+							        	<label>Four-Four-Two</label>
+							      	</div>
+                                </div>
+                                <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="fox-sports" tabindex="0" class="hidden">
+							        	<label>Fox Sports</label>
+							      	</div>
+                                </div>
+                                 <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="the-new-york-times" tabindex="0" class="hidden">
+							        	<label>The New York Times</label>
+							      	</div>
+                                </div>
+                                 <div class="field">
+									<div class="ui toggle checkbox">
+							        	<input type="checkbox" name="the-wall-street-journal" tabindex="0" class="hidden">
+							        	<label>The Wall Street Journal</label>
+							      	</div>
+                                </div>                                                                                                                                                                                                                                                            
+                            </div>            
+                            <div class="ui basic segment">
+                                <div class="inline field">
+                                    <div class="ui submit button basic right floated"><input name="submit" type="submit" value="submit" style="border: none;" /></div>
+                                </div>
+                            </div>       
+                        </div>
+					      <!-- /login?error=true -->
+					      <div th:if="${#request.getParameter('error') == 'true'}" class="ui negative message">
+					      </div>    
+                    </form>
+                </div>
+                <div class="column"></div>
+            </div>
+            <div class="row"></div>
+        </div>
+    </div>
+       
+  
+   	<div class="ui hidden divider"></div>  
+		
+	<div class="ui inverted vertical footer segment">
+    	<div class="ui center aligned container">
+	      	<div class="ui stackable inverted divided grid">
+	      	</div>
+	      	<div class="ui inverted section divider"></div>
+	      	<div>Powered by the <b>NewsAPI</b> </div>
+			<div class="ui horizontal inverted small divided link list">
+			  <a class="item" href="#">Site Map</a>
+			  <a class="item" href="#">Contact Us</a>
+			  <a class="item" href="#">Terms and Conditions</a>
+			  <a class="item" href="#">Privacy Policy</a>
+			</div>
+    	</div>
+  	</div>
+		
+		
+	
+	<script type="text/javascript" th:src="@{/semantic/dist/semantic.js}"></script>
+	   
+   </body>
+    
+</html>

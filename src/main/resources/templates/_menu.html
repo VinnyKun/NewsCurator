@@ -1,0 +1,13 @@
+
+ <div xmlns:th="http://www.thymeleaf.org" class="ui large secondary inverted pointing menu">
+   <a th:href="@{/userInfo}" class="item">Re-Curate</a>
+   <a th:href="@{/curated}" class=" active item">Curated</a>
+   <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}" class="item">Log out</a>
+
+   <div class="right item" style="padding-bottom: 3px;">
+     <h1 class="ui inverted header">
+       TheNewsCurator
+     </h1>
+   </div>
+ </div>
+
